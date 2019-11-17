@@ -1,5 +1,5 @@
 # study-booster
-![](study-booster.png)
+![](study-booster.png =10X10)
 
 # Group
 * Ilya Nemtsov
@@ -16,7 +16,7 @@ Flashcards are the most popular and effective study method, allowing to learn la
  - set time
  - add hints
  - check progress
- - share set of flashcard with friends
+ - share set of flashcards with friends
 
 # Tech
 study-booster uses a number of API's to work properly:
