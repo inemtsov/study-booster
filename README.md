@@ -1,5 +1,5 @@
 # study-booster
-![](study-booster.png =10x10)
+![](study-booster.png)
 
 # Group
 * Ilya Nemtsov
