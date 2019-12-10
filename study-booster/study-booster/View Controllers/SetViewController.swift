@@ -5,12 +5,14 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var userUid: String? = nil
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
-        
+    
+    @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var subjects = [Subject]()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
         tableView.register(SubjectCell.self, forCellReuseIdentifier: "Cell")
@@ -34,7 +36,7 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? Header else {return Header()}
-        header.nameLabel.text = "Welcome to Study-booster!"
+        header.nameLabel.text = "Sets: \(subjects.count)"
         return header
     }
     
@@ -53,8 +55,6 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(subjects[indexPath.row].uid)
         self.transitionToSet(uid: subjects[indexPath.row].uid, title: subjects[indexPath.row].title )
     }
     
@@ -75,30 +75,25 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         navigationController?.pushViewController(setViewController, animated: true)
     }
     
+    @IBAction func tappedLogOutButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func structure(cell: SubjectCell, indexPath: IndexPath) -> SubjectCell{
         cell.titleContainer.backgroundColor = nil
         cell.descriptionContainer.backgroundColor = nil
         cell.subjectTitle.text = nil
         cell.subjectDescription.text = nil
         print(subjects)
-
+        
         cell.subjectTitle.text = subjects[indexPath.row].title
-        cell.subjectDescription.text = subjects[indexPath.row].description.count > 50 ? "\(subjects[indexPath.row].description.prefix(50))..." : subjects[indexPath.row].description
-
+        cell.subjectDescription.text = subjects[indexPath.row].description.count > 30 ? "\(subjects[indexPath.row].description.prefix(30))..." : subjects[indexPath.row].description
+        
         if(indexPath.row % 2 == 0){
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = UIColor(hexString: "#DCDCDC")
+            cell.imageContainer.tintColor = UIColor.white
+            
         }
         return cell
     }
-    
-//    private func setupNavBar(){
-//        let screenSize: CGRect = self.view.frame
-//        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 30))
-//        navBar.backgroundColor = UIColor.lightGray
-//        view.addSubview(navBar)
-//        let navItem = UINavigationItem(title: "Subjects")
-//        navBar.setItems([navItem], animated: false)
-//        self.view.addSubview(navBar)
-//    }
-
 }

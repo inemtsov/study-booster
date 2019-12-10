@@ -2,7 +2,7 @@ import UIKit
 import AVKit
 
 class ViewController: UIViewController {
-
+    
     var videoPlayer: AVPlayer?
     var videoPlayerLayer: AVPlayerLayer?
     
@@ -12,15 +12,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUpElements()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         setUpVideo()
     }
     func setUpElements(){
-        Utilities.styleFilledButton(signUpButton)
-        Utilities.styleFilledButton(signInButton)
+        Utilities.styleSignUp(signUpButton)
+        Utilities.styleSignIn(signInButton)
     }
-
+    
     func setUpVideo(){
         let bundlePath = Bundle.main.path(forResource: "earth", ofType: "mp4")
         guard bundlePath != nil else{

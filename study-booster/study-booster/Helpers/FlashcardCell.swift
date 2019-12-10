@@ -6,27 +6,35 @@ class FlashcardCell: UITableViewCell {
         didSet{
             guard let unwrappedFlashcard = flashcard else { return }
             flashcardAnswer.text = unwrappedFlashcard.answer
-
         }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
-          contentView.addSubview(imageContainer)
-          imageContainer.addSubview(flashcardDifficulty)
-          contentView.addSubview(answerContainer)
-          answerContainer.addSubview(flashcardAnswer)
-
+        contentView.addSubview(imageContainer)
+        imageContainer.addSubview(flashcardDifficulty)
+        contentView.addSubview(answerContainer)
+        answerContainer.addSubview(flashcardAnswer)
+        contentView.addSubview(imageContainerArrow)
+        
         imageContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         imageContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         imageContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         imageContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor,  constant: -10).isActive = true
-
+        
         answerContainer.leadingAnchor.constraint(equalTo: self.imageContainer.leadingAnchor, constant: 50).isActive = true
         answerContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         answerContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         answerContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        
+        
+        NSLayoutConstraint.activate([
+            imageContainerArrow.heightAnchor.constraint(equalToConstant: 15),
+            imageContainerArrow.widthAnchor.constraint(equalToConstant: 15),
+            
+            imageContainerArrow.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageContainerArrow.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+        ])
     }
     
     let flashcardAnswer:UILabel = {
@@ -35,17 +43,6 @@ class FlashcardCell: UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
-//    
-//    switch text {
-//    case "easy":
-//        UIImage(systemName: "e.circle.fill")
-//    case "medium":
-//        UIImage(systemName: "m.circle.fill")
-//    case "hard":
-//        UIImage(systemName: "h.circle.fill")
-//    default:
-//        UIImage(systemName: "circle.fill")
-//    }
     
     let flashcardDifficulty:UIImageView = {
         let imageView = UIImageView()
@@ -74,15 +71,14 @@ class FlashcardCell: UITableViewCell {
         return view
     }()
     
-    func setupViews(){
-//        addSubview(flashcardDifficulty)
-//        addSubview(flashcardAnswer)
-//        addSubview(deleteButton)
-////
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(20)]-16-[v1]-8-[v2]-16-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": flashcardDifficulty, "v1": flashcardAnswer, "v2": deleteButton]))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": flashcardDifficulty]))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": flashcardAnswer]))
-    }
+    let imageContainerArrow:UIImageView = {
+        guard let image = UIImage(systemName: "chevron.right") else { return UIImageView() }
+        let view = UIImageView(image: image)
+        view.tintColor = UIColor.lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

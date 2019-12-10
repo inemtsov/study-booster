@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  study-booster
-//
-//  Created by Ilya Nemtsov on 11/23/19.
-//  Copyright © 2019 study-booster-team. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

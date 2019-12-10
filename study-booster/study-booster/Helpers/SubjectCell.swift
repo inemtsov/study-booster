@@ -16,16 +16,37 @@ class SubjectCell: UITableViewCell {
         titleContainer.addSubview(subjectTitle)
         contentView.addSubview(descriptionContainer)
         descriptionContainer.addSubview(subjectDescription)
+        contentView.addSubview(imageContainer)
         
         titleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
-        titleContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        titleContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        titleContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor,  constant: -10).isActive = true
+        titleContainer.trailingAnchor.constraint(equalTo: descriptionContainer.leadingAnchor).isActive = true
+        titleContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        titleContainer.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         
-        descriptionContainer.leadingAnchor.constraint(equalTo: self.titleContainer.leadingAnchor, constant: 50).isActive = true
-        descriptionContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        descriptionContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        descriptionContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        descriptionContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 150).isActive = true
+        descriptionContainer.trailingAnchor.constraint(equalTo: imageContainer.leadingAnchor).isActive = true
+        descriptionContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        descriptionContainer.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        
+        
+        
+        NSLayoutConstraint.activate([
+            subjectTitle.topAnchor.constraint(equalTo: titleContainer.topAnchor),
+            subjectTitle.leftAnchor.constraint(equalTo: titleContainer.leftAnchor),
+            subjectTitle.rightAnchor.constraint(equalTo: titleContainer.rightAnchor),
+            subjectTitle.bottomAnchor.constraint(equalTo: titleContainer.bottomAnchor),
+            
+            subjectDescription.topAnchor.constraint(equalTo: descriptionContainer.topAnchor),
+            subjectDescription.leftAnchor.constraint(equalTo: descriptionContainer.leftAnchor),
+            subjectDescription.rightAnchor.constraint(equalTo: descriptionContainer.rightAnchor),
+            subjectDescription.bottomAnchor.constraint(equalTo: descriptionContainer.bottomAnchor),
+            
+            imageContainer.heightAnchor.constraint(equalToConstant: 15),
+            imageContainer.widthAnchor.constraint(equalToConstant: 15),
+            imageContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageContainer.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+        ])
+        
     }
     
     let subjectTitle:UILabel = {
@@ -51,6 +72,15 @@ class SubjectCell: UITableViewCell {
     
     let descriptionContainer:UIView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let imageContainer:UIImageView = {
+        guard let image = UIImage(systemName: "chevron.right") else { return UIImageView() }
+        let view = UIImageView(image: image)
+        view.tintColor = UIColor.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view

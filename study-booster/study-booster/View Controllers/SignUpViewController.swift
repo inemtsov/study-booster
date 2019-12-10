@@ -3,30 +3,33 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
-
+    var gradientLayer:CAGradientLayer?
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var backToMainPageButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background6-1.jpg")!)
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = self.view.bounds
+        let color1 = UIColor(hexString: "#49a09d")
+        let color2 = UIColor(hexString: "#5f2c82")
+        gradientLayer?.colors = [color2.cgColor, color1.cgColor]
+        self.view.layer.insertSublayer(gradientLayer!, at: 0)
         setUpElements()
-    
     }
     
     func setUpElements(){
         errorLabel.alpha = 0
-        
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
-        Utilities.styleFilledButton(signUpButton)
-        Utilities.styleFilledButton(backToMainPageButton)
-
+        Utilities.styleLoginSignUpButton(signUpButton)
+        Utilities.styleBackButton(backButton)
     }
-
+    
     @IBAction func signUpTapped(_ sender: Any) {
         
         let error = Utilities.validateFields(emailTextField, passwordTextField)
@@ -39,7 +42,7 @@ class SignUpViewController: UIViewController {
                 if err != nil {
                     self.showError("error creating user!")
                 } else {
-                   let db = Firestore.firestore()
+                    let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["email": email, "uid": result!.user.uid]) { (error) in
                         if error != nil {
                             self.showError("Error saving user data!")
@@ -54,6 +57,10 @@ class SignUpViewController: UIViewController {
     func showError(_ error: String) -> Void {
         errorLabel.text = error
         errorLabel.alpha = 1
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func transitionToHome(_ uid: String) -> Void {
