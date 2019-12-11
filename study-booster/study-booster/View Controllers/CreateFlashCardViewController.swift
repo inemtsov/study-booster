@@ -5,7 +5,6 @@ class CreateFlashCardViewController: UIViewController {
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     var gradientLayer:CAGradientLayer?
-    
     var setUid: String? = nil
     var difficulty: String = "easy"
     @IBOutlet weak var cancelButton: UIButton!
@@ -20,25 +19,13 @@ class CreateFlashCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradientLayer = CAGradientLayer()
-        gradientLayer?.frame = self.view.bounds
-        let color1 = UIColor(hexString: "#4682B4")
-        let color2 = UIColor(hexString: "#B588F7")
-        gradientLayer?.colors = [color2.cgColor, color1.cgColor]
-        self.view.layer.insertSublayer(gradientLayer!, at: 0)
-        
-        easyButton.tintColor = UIColor.green
-        mediumButton.tintColor = UIColor.orange
-        hardButton.tintColor = UIColor.red
-        Utilities.styleCreateButton(addNewCardButton)
-        Utilities.styleBackButton(cancelButton)
-        errorLabel.alpha = 0
-        
+        setupElements()
     }
     
     @IBAction func tappedCancelButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func tappedAddNewCardButton(_ sender: Any) {
         if Utilities.validateText(answerTextField) || Utilities.validateText(questionTextField) {
             showError("Please fill in all fields!")
@@ -47,7 +34,6 @@ class CreateFlashCardViewController: UIViewController {
             let question = questionTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines )
             var hint = hintTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines )
             hint = hint.isEmpty == true ? "Not Hint" : hint
-            
             let uid = NSUUID().uuidString
             ref = Database.database().reference()
             ref?.child("flashcards").child(setUid!).child(uid).setValue(["answer": answer
@@ -81,6 +67,19 @@ class CreateFlashCardViewController: UIViewController {
             difficulty = "hard"
         default: break
         }
+    }
+    
+    func setupElements(){
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = self.view.bounds
+        gradientLayer?.colors = [UIColor(hexString: "#B588F7").cgColor,  UIColor(hexString: "#4682B4").cgColor]
+        self.view.layer.insertSublayer(gradientLayer!, at: 0)
+        easyButton.tintColor = UIColor.green
+        mediumButton.tintColor = UIColor.orange
+        hardButton.tintColor = UIColor.red
+        Utilities.styleCreateButton(addNewCardButton)
+        Utilities.styleBackButton(cancelButton)
+        errorLabel.alpha = 0
     }
     
     func showError(_ error: String) -> Void {

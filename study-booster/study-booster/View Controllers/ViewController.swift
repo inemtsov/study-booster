@@ -5,9 +5,9 @@ class ViewController: UIViewController {
     
     var videoPlayer: AVPlayer?
     var videoPlayerLayer: AVPlayerLayer?
-    
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     func setUpVideo(){
         let bundlePath = Bundle.main.path(forResource: "earth", ofType: "mp4")
-        guard bundlePath != nil else{
+        guard bundlePath != nil else {
             return
         }
         let item = AVPlayerItem(url: URL(fileURLWithPath: bundlePath!) )

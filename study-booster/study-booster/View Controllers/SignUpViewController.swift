@@ -3,8 +3,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
-    var gradientLayer:CAGradientLayer?
     
+    var gradientLayer:CAGradientLayer?
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -13,12 +13,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradientLayer = CAGradientLayer()
-        gradientLayer?.frame = self.view.bounds
-        let color1 = UIColor(hexString: "#49a09d")
-        let color2 = UIColor(hexString: "#5f2c82")
-        gradientLayer?.colors = [color2.cgColor, color1.cgColor]
-        self.view.layer.insertSublayer(gradientLayer!, at: 0)
         setUpElements()
     }
     
@@ -28,6 +22,10 @@ class SignUpViewController: UIViewController {
         Utilities.styleTextField(passwordTextField)
         Utilities.styleLoginSignUpButton(signUpButton)
         Utilities.styleBackButton(backButton)
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = self.view.bounds
+        gradientLayer?.colors = [UIColor(hexString: "#5f2c82").cgColor, UIColor(hexString: "#49a09d").cgColor]
+        self.view.layer.insertSublayer(gradientLayer!, at: 0)
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -54,19 +52,18 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func showError(_ error: String) -> Void {
         errorLabel.text = error
         errorLabel.alpha = 1
     }
     
-    @IBAction func backButtonTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    
     func transitionToHome(_ uid: String) -> Void {
         let setViewController =  storyboard?.instantiateViewController(identifier: Constants.Storyboard.setViewController) as? SetViewController
         setViewController?.userUid = uid
-        view.window?.rootViewController = setViewController
-        view.window?.makeKeyAndVisible()
+        navigationController?.pushViewController(setViewController!, animated: true)
     }
 }

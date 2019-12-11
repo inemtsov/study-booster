@@ -16,16 +16,14 @@ class FlashcardViewController: UIViewController {
     var count: Int = 0
     var iKnowIndexes = [Int]()
     var gradientLayer:CAGradientLayer?
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var cardNumberLabel: UILabel!
-    
     @IBOutlet weak var bookMarkButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var hintButton: UIButton!
-    
     @IBOutlet weak var getAnswerButton: UIButton!
     @IBOutlet weak var cardLabel: UILabel!
     @IBOutlet weak var difficultyLevelLabel: UILabel!
@@ -35,23 +33,7 @@ class FlashcardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradientLayer = CAGradientLayer()
-        gradientLayer?.frame = self.view.bounds
-        let color1 = UIColor(hexString: "#B7F8DB")
-        let color2 = UIColor(hexString: "#50A7C2")
-        gradientLayer?.colors = [color2.cgColor, color1.cgColor]
-        self.view.layer.insertSublayer(gradientLayer!, at: 0)
-        
-        Utilities.styleFlashCardButton(noIdeaButton)
-        Utilities.styleFlashCardButton(hintButton)
-        Utilities.styleFlashCardButton(iKnowButton)
-
-        titleLabel.text = setTitle!
-        timeLabel.text = timeString(time: TimeInterval(seconds))
-
-        if cards != nil {
-            count =  cards!.count
-        }
+        setupElements()
         setView()
         runTimer()
     }
@@ -59,7 +41,7 @@ class FlashcardViewController: UIViewController {
     @IBAction func tappedGetAnswerButton(_ sender: Any) {
         self.cardLabel.fadeOut(completion: {
             (finished: Bool) -> Void in
-            self.cardLabel.text = "Bird Type: Swift"
+            self.cardLabel.text = self.cards?[self.startIndex].answer
             self.cardLabel.fadeIn()
         })
     }
@@ -88,18 +70,6 @@ class FlashcardViewController: UIViewController {
         restartTimer()
     }
     
-    private func getNextIndex() -> Int{
-        var index = startIndex
-        index = (index + 1)%count
-        if(iKnow == count){
-            navigationController?.popViewController(animated: true)
-        }else {
-            while(index != startIndex && iKnowIndexes.contains(index)){
-                index = (index + 1)%count
-            }
-        }
-        return index
-    }
     
     @IBAction func tappedPlayButton(_ sender: Any) {
         guard let textToSpeach = cardLabel.text else {
@@ -107,7 +77,7 @@ class FlashcardViewController: UIViewController {
         }
         let utterance = AVSpeechUtterance(string: textToSpeach)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-
+        
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
     }
@@ -129,8 +99,26 @@ class FlashcardViewController: UIViewController {
             bookMarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
         }
     }
+    
+    func setupElements(){
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = self.view.bounds
+        gradientLayer?.colors = [UIColor(hexString: "#50A7C2").cgColor, UIColor(hexString: "#B7F8DB").cgColor]
+        self.view.layer.insertSublayer(gradientLayer!, at: 0)
         
-    private func setView(){
+        Utilities.styleFlashCardButton(noIdeaButton)
+        Utilities.styleFlashCardButton(hintButton)
+        Utilities.styleFlashCardButton(iKnowButton)
+        
+        titleLabel.text = setTitle!
+        timeLabel.text = timeString(time: TimeInterval(seconds))
+        
+        if cards != nil {
+            count =  cards!.count
+        }
+    }
+    
+    func setView(){
         hintLabel.alpha = 0
         cardNumberLabel.text = String("\(iKnow)/\(count)")
         
@@ -195,5 +183,18 @@ class FlashcardViewController: UIViewController {
         seconds = 60
         runTimer()
         timeLabel.text = timeString(time: TimeInterval(seconds))
+    }
+    
+    private func getNextIndex() -> Int{
+        var index = startIndex
+        index = (index + 1)%count
+        if(iKnow == count){
+            navigationController?.popViewController(animated: true)
+        }else {
+            while(index != startIndex && iKnowIndexes.contains(index)){
+                index = (index + 1)%count
+            }
+        }
+        return index
     }
 }

@@ -5,33 +5,15 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var userUid: String? = nil
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
-    
+    var subjects = [Subject]()
+
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    var subjects = [Subject]()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
-        tableView.register(SubjectCell.self, forCellReuseIdentifier: "Cell")
-        tableView.sectionHeaderHeight = 50
-        tableView.separatorColor = UIColor.orange
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        ref = Database.database().reference()
-        databaseHandle = ref?.child("users").child("1234").child("subjects").observe(.childAdded, with: { (snapshot) in
-            let subject = snapshot.value as? [String:Any]
-            
-            if let actualSubject = subject {
-                if let title = actualSubject["title"] as? String, let description = actualSubject["description"] as? String, let uid = actualSubject["uid"] as? String {
-                    self.subjects.append(Subject(title: title, description: description, uid: uid))
-                    self.tableView.reloadData()
-                }
-            }
-        })
+        setupTableView()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -59,7 +41,11 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func createSetTapped(_ sender: Any) {
-        self.transitionToCreateSet(uid: "fakeuid")
+        self.transitionToCreateSet(uid: userUid!)
+    }
+        
+    @IBAction func tappedLogOutButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func transitionToCreateSet(uid: String) -> Void {
@@ -75,8 +61,26 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         navigationController?.pushViewController(setViewController, animated: true)
     }
     
-    @IBAction func tappedLogOutButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+    func setupTableView(){
+        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
+        tableView.register(SubjectCell.self, forCellReuseIdentifier: "Cell")
+        tableView.sectionHeaderHeight = 50
+        tableView.separatorColor = UIColor.orange
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        ref = Database.database().reference()
+        print(userUid!)
+        databaseHandle = ref?.child("users").child(userUid!).child("subjects").observe(.childAdded, with: { (snapshot) in
+            let subject = snapshot.value as? [String:Any]
+            
+            if let actualSubject = subject {
+                if let title = actualSubject["title"] as? String, let description = actualSubject["description"] as? String, let uid = actualSubject["uid"] as? String {
+                    self.subjects.append(Subject(title: title, description: description, uid: uid))
+                    self.tableView.reloadData()
+                }
+            }
+        })
     }
     
     private func structure(cell: SubjectCell, indexPath: IndexPath) -> SubjectCell{
@@ -84,15 +88,12 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.descriptionContainer.backgroundColor = nil
         cell.subjectTitle.text = nil
         cell.subjectDescription.text = nil
-        print(subjects)
-        
         cell.subjectTitle.text = subjects[indexPath.row].title
-        cell.subjectDescription.text = subjects[indexPath.row].description.count > 30 ? "\(subjects[indexPath.row].description.prefix(30))..." : subjects[indexPath.row].description
+        cell.subjectDescription.text = subjects[indexPath.row].description.count > 20 ? "\(subjects[indexPath.row].description.prefix(20))..." : subjects[indexPath.row].description
         
         if(indexPath.row % 2 == 0){
             cell.backgroundColor = UIColor(hexString: "#DCDCDC")
             cell.imageContainer.tintColor = UIColor.white
-            
         }
         return cell
     }

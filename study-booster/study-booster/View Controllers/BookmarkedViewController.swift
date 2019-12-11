@@ -4,26 +4,15 @@ import FirebaseDatabase
 class BookmarkedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     var cards = [Flashcard]()
     var cardSetUid: String? = nil
     var cardSetTitle: String? = nil
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = getDatabaseReference()
-        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "flashcardHeader")
-        tableView.register(FlashcardCell.self, forCellReuseIdentifier: "FlashcardCell")
-        tableView.sectionHeaderHeight = 50
-        tableView.separatorColor = UIColor.orange
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    private func getDatabaseReference() -> DatabaseReference?{
-        return Database.database().reference()
+        setupTableView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +51,7 @@ class BookmarkedViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.imageContainer.backgroundColor = nil
         cell.answerContainer.backgroundColor = nil
         cell.flashcardAnswer.text = nil
-        cell.flashcardAnswer.text = cards[indexPath.row].answer.count > 50 ? "\(cards[indexPath.row].answer.prefix(50))..." : cards[indexPath.row].question
+        cell.flashcardAnswer.text = cards[indexPath.row].question.count > 30 ? "\(cards[indexPath.row].question.prefix(30))..." : cards[indexPath.row].question
         var image: UIImage?
         var color: UIColor?
         switch cards[indexPath.row].difficulty {
@@ -81,5 +70,20 @@ class BookmarkedViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.flashcardDifficulty.image = image
         cell.flashcardDifficulty.tintColor = color
         return cell
+    }
+    
+    private func setupTableView(){
+        ref = getDatabaseReference()
+        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "flashcardHeader")
+        tableView.register(FlashcardCell.self, forCellReuseIdentifier: "FlashcardCell")
+        tableView.sectionHeaderHeight = 50
+        tableView.separatorColor = UIColor.orange
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func getDatabaseReference() -> DatabaseReference?{
+        return Database.database().reference()
     }
 }

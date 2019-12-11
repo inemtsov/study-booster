@@ -8,27 +8,23 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradientLayer = CAGradientLayer()
-        gradientLayer?.frame = self.view.bounds
-        let color1 = UIColor(hexString: "#2193bo")
-        let color2 = UIColor(hexString: "#6dd5ed")
-        gradientLayer?.colors = [color2.cgColor, color1.cgColor]
-        self.view.layer.insertSublayer(gradientLayer!, at: 0)
-        
         setUpElements()
     }
     
     func setUpElements(){
         errorLabel.alpha = 0
-        
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleLoginSignUpButton(loginButton)
         Utilities.styleBackButton(backButton)
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = self.view.bounds
+        gradientLayer?.colors = [UIColor(hexString: "#6dd5ed").cgColor, UIColor(hexString: "#2193bo").cgColor]
+        self.view.layer.insertSublayer(gradientLayer!, at: 0)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -61,9 +57,7 @@ class LoginViewController: UIViewController {
     
     func transitionToHome(_ uid: String) -> Void {
         let setViewController =  storyboard?.instantiateViewController(identifier: Constants.Storyboard.setViewController) as? SetViewController
-        
         setViewController?.userUid = uid
-        view.window?.rootViewController = setViewController
-        view.window?.makeKeyAndVisible()
+        navigationController?.pushViewController(setViewController!, animated: true)
     }
 }

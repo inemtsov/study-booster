@@ -22,7 +22,7 @@ class FlashcardCell: UITableViewCell {
         imageContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         imageContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor,  constant: -10).isActive = true
         
-        answerContainer.leadingAnchor.constraint(equalTo: self.imageContainer.leadingAnchor, constant: 50).isActive = true
+        answerContainer.leadingAnchor.constraint(equalTo: self.imageContainer.leadingAnchor, constant: 30).isActive = true
         answerContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         answerContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         answerContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true

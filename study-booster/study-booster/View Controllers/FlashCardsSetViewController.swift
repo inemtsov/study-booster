@@ -7,29 +7,16 @@ class FlashCardsSetViewController: UIViewController, UITableViewDelegate, UITabl
     var cardSetTitle: String? = nil
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
+    var flashcards = [Flashcard]()
     @IBOutlet weak var addNewFlashCardButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    var flashcards = [Flashcard]()
     @IBOutlet weak var setLabel: UILabel!
     @IBOutlet weak var bookmarkedSetButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = getDatabaseReference()
-        retrieveSet(ref: ref)
-        guard let title = cardSetTitle else {
-            return
-        }
-        setLabel.text = title
-        
-        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId1")
-        tableView.register(FlashcardCell.self, forCellReuseIdentifier: "FlashcardCell")
-        tableView.sectionHeaderHeight = 50
-        tableView.separatorColor = UIColor.orange
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+        setupTableView()
     }
     
     func retrieveSet(ref: DatabaseReference?){
@@ -118,11 +105,24 @@ class FlashCardsSetViewController: UIViewController, UITableViewDelegate, UITabl
         return Database.database().reference()
     }
     
+    func setupTableView() {
+        ref = getDatabaseReference()
+        retrieveSet(ref: ref)
+        guard let title = cardSetTitle else { return }
+        setLabel.text = title
+        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId1")
+        tableView.register(FlashcardCell.self, forCellReuseIdentifier: "FlashcardCell")
+        tableView.sectionHeaderHeight = 50
+        tableView.separatorColor = UIColor.orange
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     private func structure(cell: FlashcardCell, indexPath: IndexPath) -> FlashcardCell{
         cell.imageContainer.backgroundColor = nil
         cell.answerContainer.backgroundColor = nil
         cell.flashcardAnswer.text = nil
-        cell.flashcardAnswer.text = flashcards[indexPath.row].answer.count > 50 ? "\(flashcards[indexPath.row].answer.prefix(50))..." : flashcards[indexPath.row].question
+        cell.flashcardAnswer.text = flashcards[indexPath.row].question.count > 30 ? "\(flashcards[indexPath.row].question.prefix(30))..." : flashcards[indexPath.row].question
         var image: UIImage?
         var color: UIColor?
         switch flashcards[indexPath.row].difficulty {
@@ -135,8 +135,9 @@ class FlashCardsSetViewController: UIViewController, UITableViewDelegate, UITabl
         case "hard":
             image = UIImage(systemName: "h.circle.fill")
             color = UIColor.red
-        default: image = UIImage(systemName: "circle.fill")
-        color = UIColor.black
+        default:
+            image = UIImage(systemName: "circle.fill")
+            color = UIColor.black
         }
         cell.flashcardDifficulty.image = image
         cell.flashcardDifficulty.tintColor = color
