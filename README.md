@@ -31,20 +31,14 @@ Flashcards are the most popular and effective study method, allowing to learn la
 
 # Tech
 
-study-booster uses a number of API's to work properly: \* \* \*
-study-booster is an open source with a [public repository](https://github.com/inemtsov/study-booste)
+- study-booster uses firebase for data storage and authentication.
+- study-booster is an open source with a public repository](https://github.com/inemtsov/study-booster)
 on GitHub.
 
 # Installation
 
-study-booster requires ... to run.
-sh
-
-# Todos
-
-- Write Tests
-- Add Night Mode
+- run "pod install" to install the dependencies of the project
 
 ## License
 
-**Free Software, Hell Yeah!**
+**Free Software :)**
