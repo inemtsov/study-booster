@@ -27,7 +27,7 @@ class BookmarkedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FlashcardCell", for: indexPath) as? FlashcardCell else {return UITableViewCell()}
-        return structure(cell: cell, indexPath: indexPath)
+        return FlashcardCell.structure(cards: cards, cell: cell, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -47,38 +47,12 @@ class BookmarkedViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.popViewController(animated: true)
     }
     
-    private func structure(cell: FlashcardCell, indexPath: IndexPath) -> FlashcardCell{
-        cell.imageContainer.backgroundColor = nil
-        cell.answerContainer.backgroundColor = nil
-        cell.flashcardAnswer.text = nil
-        cell.flashcardAnswer.text = cards[indexPath.row].question.count > 30 ? "\(cards[indexPath.row].question.prefix(30))..." : cards[indexPath.row].question
-        var image: UIImage?
-        var color: UIColor?
-        switch cards[indexPath.row].difficulty {
-        case "easy":
-            image = UIImage(systemName: "e.circle.fill")
-            color = UIColor.green
-        case "medium":
-            image = UIImage(systemName: "m.circle.fill")
-            color = UIColor.orange
-        case "hard":
-            image = UIImage(systemName: "h.circle.fill")
-            color = UIColor.red
-        default: image = UIImage(systemName: "circle.fill")
-        color = UIColor.black
-        }
-        cell.flashcardDifficulty.image = image
-        cell.flashcardDifficulty.tintColor = color
-        return cell
-    }
-    
     private func setupTableView(){
         ref = getDatabaseReference()
         tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "flashcardHeader")
         tableView.register(FlashcardCell.self, forCellReuseIdentifier: "FlashcardCell")
         tableView.sectionHeaderHeight = 50
         tableView.separatorColor = UIColor.orange
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
