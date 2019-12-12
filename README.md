@@ -15,19 +15,20 @@ Flashcards are the most popular and effective study method, allowing to learn la
 
 # priority one
 
-- create flashcards on different topics
-- flip through flashcard set
+- create sets and flashcards on different topics
+- scroll through flashcard sets
 - listen text from a flashcard
 - indicate level of flashcard(easy medium hard)
-- set time
+- timing for flashcard
 - add hints
-- check progress
+- bookmarks
+- google firebase db
+- authentication(registration and login)
 
 # priority two
-
-- google firebase db
-- authentication
+- animation
 - share set of flashcards with friends
+- fix bugs
 
 # Tech
 
