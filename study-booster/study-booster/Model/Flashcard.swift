@@ -6,4 +6,5 @@ struct Flashcard {
     let difficulty: String
     let hint: String
     let uid: String
+    var bookmarked: Bool = false
 }

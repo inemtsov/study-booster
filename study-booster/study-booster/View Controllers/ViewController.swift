@@ -2,28 +2,28 @@ import UIKit
 import AVKit
 
 class ViewController: UIViewController {
-
+    
     var videoPlayer: AVPlayer?
     var videoPlayerLayer: AVPlayerLayer?
-    
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         setUpVideo()
     }
     func setUpElements(){
-        Utilities.styleFilledButton(signUpButton)
-        Utilities.styleFilledButton(signInButton)
+        Utilities.styleSignUp(signUpButton)
+        Utilities.styleSignIn(signInButton)
     }
-
+    
     func setUpVideo(){
         let bundlePath = Bundle.main.path(forResource: "earth", ofType: "mp4")
-        guard bundlePath != nil else{
+        guard bundlePath != nil else {
             return
         }
         let item = AVPlayerItem(url: URL(fileURLWithPath: bundlePath!) )
