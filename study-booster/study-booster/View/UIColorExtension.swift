@@ -19,4 +19,19 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+    
+    static func getColor(difficulty:String) -> UIColor {
+        let color: UIColor
+        switch difficulty {
+        case "easy":
+            color = UIColor.systemGreen
+        case "medium":
+            color = UIColor.orange
+        case "hard":
+            color = UIColor.red
+        default:
+            color = UIColor.yellow
+        }
+        return color
+    }
 }

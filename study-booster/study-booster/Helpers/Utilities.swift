@@ -28,7 +28,7 @@ class Utilities {
     static func styleFlashCardButton(_ button:UIButton) {
         styleButton(button, hex: "#f8f8ff")
     }
-
+    
     static func styleCreateButton(_ button:UIButton) {
         styleButton(button, hex: "#24C6DC")
     }

@@ -2,7 +2,7 @@ import UIKit
 import FirebaseDatabase
 
 class CreateSetViewController: UIViewController {
-   
+    
     var userUid: String? = nil
     var gradientLayer:CAGradientLayer?
     var ref:DatabaseReference?
@@ -12,7 +12,7 @@ class CreateSetViewController: UIViewController {
     @IBOutlet weak var createSetButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.alpha = 0
@@ -31,7 +31,7 @@ class CreateSetViewController: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         toPreviuousView()
     }
-        
+    
     @IBAction func createTapped(_ sender: Any) {
         if Utilities.validateText(titleTextView) || Utilities.validateText(descriptionTextView) {
             showError("Please fill in all fields!")

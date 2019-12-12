@@ -48,7 +48,7 @@ class FlashCardsSetViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FlashcardCell", for: indexPath) as? FlashcardCell else {return UITableViewCell()}
-        return structure(cell: cell, indexPath: indexPath)
+        return FlashcardCell.structure(cards: flashcards, cell: cell, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -116,31 +116,5 @@ class FlashCardsSetViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.separatorColor = UIColor.orange
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    private func structure(cell: FlashcardCell, indexPath: IndexPath) -> FlashcardCell{
-        cell.imageContainer.backgroundColor = nil
-        cell.answerContainer.backgroundColor = nil
-        cell.flashcardAnswer.text = nil
-        cell.flashcardAnswer.text = flashcards[indexPath.row].question.count > 30 ? "\(flashcards[indexPath.row].question.prefix(30))..." : flashcards[indexPath.row].question
-        var image: UIImage?
-        var color: UIColor?
-        switch flashcards[indexPath.row].difficulty {
-        case "easy":
-            image = UIImage(systemName: "e.circle.fill")
-            color = UIColor.green
-        case "medium":
-            image = UIImage(systemName: "m.circle.fill")
-            color = UIColor.orange
-        case "hard":
-            image = UIImage(systemName: "h.circle.fill")
-            color = UIColor.red
-        default:
-            image = UIImage(systemName: "circle.fill")
-            color = UIColor.black
-        }
-        cell.flashcardDifficulty.image = image
-        cell.flashcardDifficulty.tintColor = color
-        return cell
     }
 }

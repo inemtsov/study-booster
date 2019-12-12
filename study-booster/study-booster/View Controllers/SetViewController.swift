@@ -6,7 +6,7 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     var subjects = [Subject]()
-
+    
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -33,7 +33,7 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? SubjectCell else {return UITableViewCell()}
-        return structure(cell: cell, indexPath: indexPath)
+        return SubjectCell.structure(subjects: subjects, cell: cell, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -43,7 +43,7 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func createSetTapped(_ sender: Any) {
         self.transitionToCreateSet(uid: userUid!)
     }
-        
+    
     @IBAction func tappedLogOutButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -81,20 +81,5 @@ class SetViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             }
         })
-    }
-    
-    private func structure(cell: SubjectCell, indexPath: IndexPath) -> SubjectCell{
-        cell.titleContainer.backgroundColor = nil
-        cell.descriptionContainer.backgroundColor = nil
-        cell.subjectTitle.text = nil
-        cell.subjectDescription.text = nil
-        cell.subjectTitle.text = subjects[indexPath.row].title
-        cell.subjectDescription.text = subjects[indexPath.row].description.count > 20 ? "\(subjects[indexPath.row].description.prefix(20))..." : subjects[indexPath.row].description
-        
-        if(indexPath.row % 2 == 0){
-            cell.backgroundColor = UIColor(hexString: "#DCDCDC")
-            cell.imageContainer.tintColor = UIColor.white
-        }
-        return cell
     }
 }

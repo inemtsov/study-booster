@@ -70,7 +70,6 @@ class FlashcardViewController: UIViewController {
         restartTimer()
     }
     
-    
     @IBAction func tappedPlayButton(_ sender: Any) {
         guard let textToSpeach = cardLabel.text else {
             return
@@ -138,22 +137,7 @@ class FlashcardViewController: UIViewController {
         difficultyLevelLabel.layer.borderWidth = 1.0
         difficultyLevelLabel.layer.cornerRadius = 8.0
         difficultyLevelLabel.layer.masksToBounds = true
-        difficultyLevelLabel.backgroundColor = getColor(difficulty: card.difficulty)
-    }
-    
-    private func getColor(difficulty:String) -> UIColor {
-        let color: UIColor
-        switch difficulty {
-        case "easy":
-            color = UIColor.systemGreen
-        case "medium":
-            color = UIColor.orange
-        case "hard":
-            color = UIColor.red
-        default:
-            color = UIColor.yellow
-        }
-        return color
+        difficultyLevelLabel.backgroundColor = UIColor.getColor(difficulty: card.difficulty)
     }
     
     private func runTimer() {
