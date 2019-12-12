@@ -37,7 +37,13 @@ on GitHub.
 
 # Installation
 
-- run "pod install" to install the dependencies of the project
+- run
+"cd study-booster"
+"pod install" 
+to install the dependencies of the project
+
+# Running to project
+- run the project in xcode and click the play button. 
 
 ## License
 
