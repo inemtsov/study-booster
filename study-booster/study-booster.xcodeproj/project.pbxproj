@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		531E13933BED837E1E201C83 /* Pods_study_booster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968500DDC802132D60419BCA /* Pods_study_booster.framework */; };
+		CD532A4A239BA3FB003CBD99 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD532A49239BA3FB003CBD99 /* UIColorExtension.swift */; };
+		CD532A4C239D90D3003CBD99 /* BookmarkedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD532A4B239D90D3003CBD99 /* BookmarkedViewController.swift */; };
+		CDB624F023A21D6700A67A21 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDBDCBF62389F5E2002C67D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBDCBF52389F5E2002C67D7 /* AppDelegate.swift */; };
 		CDBDCBF82389F5E2002C67D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBDCBF72389F5E2002C67D7 /* SceneDelegate.swift */; };
 		CDBDCBFA2389F5E2002C67D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBDCBF92389F5E2002C67D7 /* ViewController.swift */; };
@@ -29,10 +31,31 @@
 		CDD5CD072393A7E10067DC64 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CD062393A7E10067DC64 /* Flashcard.swift */; };
 		CDD5CD092393AE000067DC64 /* FlashcardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CD082393AE000067DC64 /* FlashcardCell.swift */; };
 		CDD5CD0B23964CD90067DC64 /* CreateFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CD0A23964CD90067DC64 /* CreateFlashCardViewController.swift */; };
+		CDD5CD132398344D0067DC64 /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CD122398344D0067DC64 /* FlashcardViewController.swift */; };
+		CDD5CD152398FE0A0067DC64 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5CD142398FE0A0067DC64 /* UIViewExtensions.swift */; };
+		E7BFDC076C73D2674BD5DA24 /* Pods_study_booster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D57C32F961B156B4581004 /* Pods_study_booster.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CDB624F123A21D6700A67A21 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDB624F023A21D6700A67A21 /* BuildFile in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		968500DDC802132D60419BCA /* Pods_study_booster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_study_booster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		436A78DD4E442108A7AFEAF3 /* Pods-study-booster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-study-booster.release.xcconfig"; path = "Target Support Files/Pods-study-booster/Pods-study-booster.release.xcconfig"; sourceTree = "<group>"; };
+		781EAB62BEC5FA6849EC9099 /* Pods-study-booster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-study-booster.debug.xcconfig"; path = "Target Support Files/Pods-study-booster/Pods-study-booster.debug.xcconfig"; sourceTree = "<group>"; };
+		A9D57C32F961B156B4581004 /* Pods_study_booster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_study_booster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD532A49239BA3FB003CBD99 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CD532A4B239D90D3003CBD99 /* BookmarkedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedViewController.swift; sourceTree = "<group>"; };
 		CDBDCBF22389F5E2002C67D7 /* study-booster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "study-booster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBDCBF52389F5E2002C67D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBDCBF72389F5E2002C67D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,8 +79,8 @@
 		CDD5CD062393A7E10067DC64 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		CDD5CD082393AE000067DC64 /* FlashcardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCell.swift; sourceTree = "<group>"; };
 		CDD5CD0A23964CD90067DC64 /* CreateFlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFlashCardViewController.swift; sourceTree = "<group>"; };
-		E8ECE861CE92F2A8FC1ACA24 /* Pods-study-booster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-study-booster.debug.xcconfig"; path = "Target Support Files/Pods-study-booster/Pods-study-booster.debug.xcconfig"; sourceTree = "<group>"; };
-		F71458B199219A125D52D8B1 /* Pods-study-booster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-study-booster.release.xcconfig"; path = "Target Support Files/Pods-study-booster/Pods-study-booster.release.xcconfig"; sourceTree = "<group>"; };
+		CDD5CD122398344D0067DC64 /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
+		CDD5CD142398FE0A0067DC64 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,28 +88,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				531E13933BED837E1E201C83 /* Pods_study_booster.framework in Frameworks */,
+				E7BFDC076C73D2674BD5DA24 /* Pods_study_booster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02FA3B8C0AA98956BB04B5ED /* Frameworks */ = {
+		3B4FDE68ABFC0960BE0A09B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				968500DDC802132D60419BCA /* Pods_study_booster.framework */,
+				781EAB62BEC5FA6849EC9099 /* Pods-study-booster.debug.xcconfig */,
+				436A78DD4E442108A7AFEAF3 /* Pods-study-booster.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7BF27AF489CC69BCDA14D600 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9D57C32F961B156B4581004 /* Pods_study_booster.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6608F73CBBCE8CFA2FD6D61C /* Pods */ = {
+		CD4114A7239F7DC8006E753F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E8ECE861CE92F2A8FC1ACA24 /* Pods-study-booster.debug.xcconfig */,
-				F71458B199219A125D52D8B1 /* Pods-study-booster.release.xcconfig */,
 			);
-			path = Pods;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CD4114A8239F8845006E753F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDBDCC24238DF2ED002C67D7 /* SubjectCell.swift */,
+				CDBDCC2A238FC613002C67D7 /* Header.swift */,
+				CDD5CD082393AE000067DC64 /* FlashcardCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CDBDCBE92389F5E2002C67D7 = {
@@ -94,8 +135,8 @@
 			children = (
 				CDBDCBF42389F5E2002C67D7 /* study-booster */,
 				CDBDCBF32389F5E2002C67D7 /* Products */,
-				6608F73CBBCE8CFA2FD6D61C /* Pods */,
-				02FA3B8C0AA98956BB04B5ED /* Frameworks */,
+				3B4FDE68ABFC0960BE0A09B8 /* Pods */,
+				7BF27AF489CC69BCDA14D600 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +151,8 @@
 		CDBDCBF42389F5E2002C67D7 /* study-booster */ = {
 			isa = PBXGroup;
 			children = (
+				CD4114A8239F8845006E753F /* View */,
+				CD4114A7239F7DC8006E753F /* ViewModel */,
 				CDBDCC26238F560F002C67D7 /* Model */,
 				CDBDCC17238A39CE002C67D7 /* Media */,
 				CDBDCC12238A09B5002C67D7 /* Helpers */,
@@ -135,6 +178,8 @@
 				CDBDCC22238CEB12002C67D7 /* FlashCardsSetViewController.swift */,
 				CDBDCC2C2390F32E002C67D7 /* SetViewController.swift */,
 				CDD5CD0A23964CD90067DC64 /* CreateFlashCardViewController.swift */,
+				CDD5CD122398344D0067DC64 /* FlashcardViewController.swift */,
+				CD532A4B239D90D3003CBD99 /* BookmarkedViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -142,11 +187,10 @@
 		CDBDCC12238A09B5002C67D7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CD532A49239BA3FB003CBD99 /* UIColorExtension.swift */,
+				CDD5CD142398FE0A0067DC64 /* UIViewExtensions.swift */,
 				CDBDCC10238A098E002C67D7 /* Utilities.swift */,
 				CDBDCC15238A2D37002C67D7 /* Constants.swift */,
-				CDBDCC24238DF2ED002C67D7 /* SubjectCell.swift */,
-				CDBDCC2A238FC613002C67D7 /* Header.swift */,
-				CDD5CD082393AE000067DC64 /* FlashcardCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -175,11 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDBDCC062389F5E4002C67D7 /* Build configuration list for PBXNativeTarget "study-booster" */;
 			buildPhases = (
-				31BD0E879BA3C173AFC68A03 /* [CP] Check Pods Manifest.lock */,
+				01E643921AB88DF66C4D7EAF /* [CP] Check Pods Manifest.lock */,
 				CDBDCBEE2389F5E2002C67D7 /* Sources */,
 				CDBDCBEF2389F5E2002C67D7 /* Frameworks */,
 				CDBDCBF02389F5E2002C67D7 /* Resources */,
-				6BCC5C8C5152FFDD7213A083 /* [CP] Embed Pods Frameworks */,
+				CDB624F123A21D6700A67A21 /* Embed Frameworks */,
+				CC1E8B1A375D402623AF8476 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,7 +284,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		31BD0E879BA3C173AFC68A03 /* [CP] Check Pods Manifest.lock */ = {
+		01E643921AB88DF66C4D7EAF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,7 +306,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6BCC5C8C5152FFDD7213A083 /* [CP] Embed Pods Frameworks */ = {
+		CC1E8B1A375D402623AF8476 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -289,17 +334,21 @@
 				CDD5CD0B23964CD90067DC64 /* CreateFlashCardViewController.swift in Sources */,
 				CDBDCC2B238FC613002C67D7 /* Header.swift in Sources */,
 				CDBDCC25238DF2ED002C67D7 /* SubjectCell.swift in Sources */,
+				CD532A4A239BA3FB003CBD99 /* UIColorExtension.swift in Sources */,
 				CDD5CD092393AE000067DC64 /* FlashcardCell.swift in Sources */,
 				CDBDCBFA2389F5E2002C67D7 /* ViewController.swift in Sources */,
 				CDBDCBF62389F5E2002C67D7 /* AppDelegate.swift in Sources */,
 				CDBDCC28238F5644002C67D7 /* Subject.swift in Sources */,
 				CDD5CD072393A7E10067DC64 /* Flashcard.swift in Sources */,
+				CDD5CD132398344D0067DC64 /* FlashcardViewController.swift in Sources */,
 				CDBDCC0A2389F641002C67D7 /* SignUpViewController.swift in Sources */,
 				CDBDCC0C2389F65D002C67D7 /* LoginViewController.swift in Sources */,
 				CDBDCBF82389F5E2002C67D7 /* SceneDelegate.swift in Sources */,
 				CDBDCC21238B33A3002C67D7 /* CreateSetViewController.swift in Sources */,
+				CD532A4C239D90D3003CBD99 /* BookmarkedViewController.swift in Sources */,
 				CDBDCC2D2390F32E002C67D7 /* SetViewController.swift in Sources */,
 				CDBDCC11238A098E002C67D7 /* Utilities.swift in Sources */,
+				CDD5CD152398FE0A0067DC64 /* UIViewExtensions.swift in Sources */,
 				CDBDCC16238A2D37002C67D7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +491,7 @@
 		};
 		CDBDCC072389F5E4002C67D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8ECE861CE92F2A8FC1ACA24 /* Pods-study-booster.debug.xcconfig */;
+			baseConfigurationReference = 781EAB62BEC5FA6849EC9099 /* Pods-study-booster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,13 +503,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.csc690.study-booster";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		CDBDCC082389F5E4002C67D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F71458B199219A125D52D8B1 /* Pods-study-booster.release.xcconfig */;
+			baseConfigurationReference = 436A78DD4E442108A7AFEAF3 /* Pods-study-booster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -472,7 +521,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.csc690.study-booster";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -785,7 +785,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="container" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Af-KA-Te0">
-                                <rect key="frame" x="0.0" y="204" width="375" height="300.00000000000011"/>
+                                <rect key="frame" x="0.0" y="204" width="375" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Ehg-Xt-4Ng"/>
                                     <constraint firstAttribute="height" constant="300" id="tQd-AF-WqE"/>
